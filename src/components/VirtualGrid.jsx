@@ -9,24 +9,22 @@ function VirtualGrid({ data, itemHeight, containerHeight, renderItem }) {
     const handleScroll = (e) => {
       const currentScroll = e.target.scrollTop
       // INTENTIONAL STALE CLOSURE BUG: lastScroll is always 0 inside this closure
-      // because it is not included in the dependency array.
-      // This breaks the rendering optimization/throttling!
       const scrollDiff = currentScroll - lastScroll
-      
+
       console.log(`[Stale Closure Bug] currentScroll: ${currentScroll}, lastScroll in closure: ${lastScroll}, diff: ${scrollDiff}`);
-      
+
       if (Math.abs(scrollDiff) > 10) {
         setScrollTop(currentScroll)
         setLastScroll(currentScroll)
       }
     }
-    
+
     const el = containerRef.current
     if (el) el.addEventListener('scroll', handleScroll)
     return () => {
       if (el) el.removeEventListener('scroll', handleScroll)
     }
-  }, []) // Missing lastScroll, scrollTop, data! (Stale closure vulnerability)
+  }, []) // Missing lastScroll, scrollTop, data (Stale closure vulnerability)
 
   const totalHeight = data.length * itemHeight
   const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - 2) // small buffer
@@ -36,18 +34,18 @@ function VirtualGrid({ data, itemHeight, containerHeight, renderItem }) {
   const visibleItems = data.slice(startIndex, endIndex)
   const offsetY = startIndex * itemHeight
 
-  // Exposing the bug visually
+  // showing the bug on the screen
   const renderCountRef = useRef(0)
   renderCountRef.current += 1
 
   return (
     <div style={{ marginBottom: '10px' }}>
       <div style={{ padding: '10px', backgroundColor: '#fff3cd', border: '1px solid #ffeeba', color: '#856404', marginBottom: '10px', fontSize: '14px', fontFamily: 'monospace' }}>
-        <strong>Bug Monitor:</strong> VirtualGrid Render Count: {renderCountRef.current} <br/>
+        <strong>Bug Monitor:</strong> VirtualGrid Render Count: {renderCountRef.current} <br />
         <small>(Notice how fast this spins up during scrolling due to the Stale Closure bug explicitly breaking the throttling math)</small>
       </div>
-      <div 
-        ref={containerRef} 
+      <div
+        ref={containerRef}
         style={{
           height: `${containerHeight}px`,
           overflowY: 'auto',
