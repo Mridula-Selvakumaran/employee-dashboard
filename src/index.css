@@ -1,0 +1,168 @@
+:root {
+  --primary: #0056b3;
+  --secondary: #f4f4f4;
+  --text-color: #333333;
+  --border-color: #cccccc;
+  --error-color: #d9534f;
+  --success-color: #5cb85c;
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  padding: 0;
+  margin: 0;
+  background-color: #e9ecef;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+/* Typography styles */
+h1, h2, h3 {
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+p {
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: #f8f9fa;
+  padding: 15px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Login styles */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  width: 350px;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-family: var(--font-family);
+}
+
+.btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid #004085;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #004085;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* List/Grid Styles */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #e9ecef;
+  border: 1px solid var(--border-color);
+  font-weight: bold;
+}
+
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+  border-bottom: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.list-row:hover {
+  background-color: #f5f5f5;
+}
+
+.list-row > span {
+  flex: 1;
+}
+
+.list-row > span:nth-child(2) {
+  text-align: center;
+}
+
+.list-row > span:last-child {
+  text-align: right;
+  color: #28a745;
+}
+
+/* Utils */
+.panel {
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fdfdfd;
+}
+
+/* Map sizing override */
+.leaflet-container {
+  border: 1px solid var(--border-color);
+}
